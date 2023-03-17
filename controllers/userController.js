@@ -14,10 +14,7 @@ router.get('/', (req, res) => {
         model: Friend,
         as: 'Friends',
       },
-      {
-        model: Note,
-        as: 'Notes',
-      },
+
     ],
   })
     .then((data) => {
@@ -122,10 +119,7 @@ router.get('/:id', (req, res) => {
         model: Friend,
         as: 'Friends',
       },
-      {
-        model: Note,
-        as: 'Notes',
-      },
+
     ],
   })
     .then((data) => {
