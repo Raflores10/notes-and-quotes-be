@@ -1,7 +1,6 @@
 const sequelize = require("../config/connection");
-const { User, Genre } = require("../models");
+const { User, Friend } = require("../models");
 
-const friendSeeds = require('./genre.json')
 
 const seed = async ()=> {
     await sequelize.sync({force:true});
@@ -67,7 +66,5 @@ const seed = async ()=> {
     })
 
     
-const friends = await Friend.bulkCreate(friendSeeds);
-
-    await users
 }
+seed();
