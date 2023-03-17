@@ -3,11 +3,11 @@ const Friend = require('./Friend');
 const Note = require('./Note');
 
 
-Friend.belongsTo(User);
 User.hasMany(Friend);
+Friend.belongsTo(User);
 
-Note.belongsTo(User);
 User.hasMany(Note);
+Note.belongsTo(User);
 
 
 
