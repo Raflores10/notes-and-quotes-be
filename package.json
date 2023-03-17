@@ -16,7 +16,9 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
+    
   },
   "name": "notes-and-quotes-be",
   "description": "",

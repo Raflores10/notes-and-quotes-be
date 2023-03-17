@@ -12,16 +12,16 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Friend,
-        as: 'Friend',
+        as: 'Friends',
       },
       {
         model: Note,
-        as: 'Note',
+        as: 'Notes',
       },
     ],
   })
-    .then((usersArr) => {
-      res.json(usersArr)
+    .then((data) => {
+      res.json(data)
     })
     .catch((err) => {
       console.log(err)
@@ -120,11 +120,11 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Friend,
-        as: 'Friend',
+        as: 'Friends',
       },
       {
         model: Note,
-        as: 'Note',
+        as: 'Notes',
       },
     ],
   })
@@ -139,3 +139,23 @@ router.get('/:id', (req, res) => {
       })
     })
 })
+
+// Delete a user
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+    } else {
+      await user.destroy();
+      res.json({ message: 'User deleted successfully' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+module.exports = router;

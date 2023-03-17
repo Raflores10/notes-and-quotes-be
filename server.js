@@ -2,18 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const SpotifyWebApi = require('spotify-web-api-node');
 const cors = require('cors');
+const allRoutes = require('./controllers');
 const bodyParser = require('body-parser');
-const lyricsFinder = require('lyrics-finder');
 const sequelize = require('./config/connection');
 
 const app = express()
+const {User,Friend,Note} = require('./models');
 
 const PORT = process.env.PORT || 3001;
+
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
+app.use('/',allRoutes);
 app.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken
   const spotifyApi = new SpotifyWebApi({
@@ -60,12 +63,10 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.get('/lyrics', async (req,res) => {
-    const lyrics = (await lyricsFinder(req.query.artist, req.query.track)) || "No Lyrics Found"
-    req.json({lyrics})
-})
+
 
 sequelize.sync({force:false}).then(function() {
     app.listen(PORT, function(){
     console.log('App listening on PORT ' + PORT);
     })});
+

@@ -10,6 +10,7 @@ Note.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey:true,
         unique:true
     },
     text: {
@@ -20,7 +21,5 @@ Note.init({
     sequelize
 });
 
-Note.belongsTo(User);
-Note.belongsTo(Friend);
 
 module.exports=Note

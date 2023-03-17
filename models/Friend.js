@@ -18,7 +18,6 @@ Friend.init({
     sequelize
 });
 
-Friend.belongsTo(User);
-User.hasMany(Friend);
+
 
 module.exports=Friend
