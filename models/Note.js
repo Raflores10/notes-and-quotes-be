@@ -1,25 +1,40 @@
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const User = require('./User');
-const Friend = require('./Friend');
-
 
 class Note extends Model {}
 
-Note.init({
+Note.init(
+  {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey:true,
-        unique:true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
     text: {
-        type: DataTypes.STRING,
-        allowNull:false,
-    }
-},{
-    sequelize
-});
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // foreign keys
+    senderId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'User',
+        key: 'id',
+      },
+    },
+    receiverId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Friend',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    modelName: 'note',
+  }
+);
 
-
-module.exports=Note
+module.exports = Note;

@@ -1,10 +1,13 @@
 const sequelize = require('../config/connection')
 const { User, Friend, Note } = require('../models')
 
-const seed = async () => {
-  await sequelize.sync({ force: true })
+const noteSeeds = require('./notes.json')
 
-  const users = User.bulkCreate(
+const seed = async () => {
+
+  await sequelize.sync({ force: false })
+  
+  const users = await User.bulkCreate(
     [
       {
         username: 'Kraig',
@@ -67,7 +70,7 @@ const seed = async () => {
     },
   )
 
-  const friends = Friend.bulkCreate(
+  const friends = await Friend.bulkCreate(
     [
       {
         id: 1,
@@ -108,44 +111,6 @@ const seed = async () => {
   )
 }
 
-// const notes = Note.bulkCreate(
-//     [
-//       {
-//         id: 1,
-//         text: "I'm a note!",
-//       },
-//       {
-//         id: 2,
-//         text: "I am also a note!",
-//       },
-      // {
-      //   id: 3,
-      //   text: "God I hope this works",
-      // },
-//       {
-//         id: 4,
-//         text: "If it doesn't...",
-//       },
-//       {
-//         id: 5,
-//         text: "I'll scream",
-//       },
-//       {
-//         id: 6,
-//         text: "Or go on a run",
-//       },
-//       {
-//         id: 7,
-//         text: "That's probably healthier",
-//       },
-//       {
-//         id: 8,
-//         text: "Yeah... #health",
-//       },
-//     ],
-//     {
-//       individualHooks: true,
-//     },
-//   )
+  
 
-seed()
+seed();
