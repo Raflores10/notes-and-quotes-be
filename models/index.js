@@ -6,8 +6,8 @@ const Note = require('./Note');
 User.hasMany(Friend);
 Friend.belongsTo(User);
 
-User.hasMany(Note);
-Note.belongsTo(User);
+// User.hasMany(Note);
+// Note.belongsTo(User);
 
 
 
