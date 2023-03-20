@@ -12,57 +12,57 @@ const seed = async () => {
       {
         username: 'Kraig',
         email: 'Kraig@kraig.kraig',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Rickie',
         email: 'Rickie@Rickie.Rickie',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Johnny',
         email: 'Johnny@Johnny.Johnny',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Alisa',
         email: 'Alisa@Alisa.Alisa',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Allie',
         email: 'Allie@Allie.Allie',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Hannah',
         email: 'Hannah@Hannah.Hannah',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Richard',
         email: 'Richard@Richard.Richard',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Sophie',
         email: 'Sophie@Sophie.Sophie',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Savannah',
         email: 'Savannah@Savannah.Savannah',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'George',
         email: 'George@George.George',
-        password: 'password',
+        password: 'password1',
       },
       {
         username: 'Steve',
         email: 'Steve@Steve.Steve',
-        password: 'password',
+        password: 'password1',
       },
     ],
     {

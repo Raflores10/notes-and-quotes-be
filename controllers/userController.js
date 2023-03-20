@@ -62,18 +62,18 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username,
-      password: req.body.password,
-    },
-  })
+        username: req.body.username,
+    }
+})
     .then((foundUser) => {
       if (!foundUser) {
+        console.log(foundUser)
         return res.status(401).json({ msg: 'Invalid login credentials' })
       }
       const token = jwt.sign(
         {
           username: foundUser.username,
-          id: foundUser.id,
+          password: foundUser.password,
         },
         process.env.JWT_SECRET,
         {
