@@ -30,24 +30,34 @@ router.get('/', (req, res) => {
 })
 
 //signup
-// Handle user registration
-router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-
-  try {
-    // Generate a unique token for the user
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    // Insert the user's information and token into the mySQL database
-    const user = await User.create({username, email, password, token });
-
-    console.log(user.toJSON());
-    res.json({ token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'An error occurred while registering user' });
-  }
-});
+router.post('/register', (req, res) => {
+  User.create({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+  })
+    .then((newUser) => {
+      const token = jwt.sign(
+        (console.log(token)),
+        {
+          username: newUser.username,
+          id: newUser.id,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: '4h',
+        },
+      )
+      res.json({
+        token,
+        user: newUser,
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json({ msg: 'An error has occurred', err })
+    })
+})
 
 //Login route
 router.post('/login', (req, res) => {
