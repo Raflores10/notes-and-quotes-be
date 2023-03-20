@@ -54,7 +54,6 @@ router.get('/login', function (req, res) {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // your application requests authorization
   const scope =
     'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
 
@@ -70,8 +69,6 @@ router.get('/login', function (req, res) {
 });
 
 router.get('/callback', function (req, res) {
-  // your application requests refresh and access tokens
-  // after checking the state parameter
 
   const code = req.query.code || null;
   const state = req.query.state || null;
