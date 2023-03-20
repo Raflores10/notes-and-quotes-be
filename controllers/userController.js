@@ -38,7 +38,6 @@ router.post('/register', (req, res) => {
   })
     .then((newUser) => {
       const token = jwt.sign(
-        (console.log(token)),
         {
           username: newUser.username,
           id: newUser.id,
