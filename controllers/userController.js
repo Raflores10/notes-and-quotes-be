@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 })
 
 //signup
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
   User.create({
     username: req.body.username,
     password: req.body.password,
@@ -38,6 +38,7 @@ router.post('/', (req, res) => {
   })
     .then((newUser) => {
       const token = jwt.sign(
+        (console.log(token)),
         {
           username: newUser.username,
           id: newUser.id,
@@ -62,7 +63,8 @@ router.post('/', (req, res) => {
 router.post('/login', (req, res) => {
   User.findOne({
     where: {
-      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password,
     },
   })
     .then((foundUser) => {
@@ -76,7 +78,7 @@ router.post('/login', (req, res) => {
         },
         process.env.JWT_SECRET,
         {
-          expiresIn: '4h',
+          expiresIn: '2h',
         },
       )
       res.json({
